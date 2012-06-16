@@ -16,16 +16,17 @@ class Cache(object):
             self.comment = self.raw["comment"]
         else:
             self.comment = ''
-            
+
+
 class CacheRequest(object):
     def __init__(self, j):
         self.raw = j
-    
+
         if "expires" in self.raw:
             self.expires = CacheRequest(self.raw["expires"])
         else:
             self.expires = None
-            
+
         self.last_access = self.raw["lastAccess"]
         self.etag = self.raw["eTag"]
         self.hit_count = self.raw["hitCount"]

@@ -2,6 +2,7 @@ from . import cookie
 from . import header
 from . import content
 
+
 class Response(object):
     def __init__(self, j):
         self.raw = j
@@ -9,7 +10,7 @@ class Response(object):
         self.status = self.raw["status"]
         self.status_text = self.raw["statusText"]
         self.http_version = self.raw["httpVersion"]
-        
+
         self.cookies = []
         for c in self.raw["cookies"]:
             self.cookies.append(cookie.Cookie(c))

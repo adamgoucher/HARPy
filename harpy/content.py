@@ -1,7 +1,7 @@
 class Content(object):
     def __init__(self, j):
         self.raw = j
-        
+
         self.size = self.raw["size"]
         if "compression" in self.raw:
             self.compression = self.raw["compression"]

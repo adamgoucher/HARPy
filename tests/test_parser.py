@@ -2,16 +2,19 @@ import os.path
 import pytest
 import sys
 
+
 f = os.path.join(os.path.dirname(__file__), "allievi.sssup.it.120601_0_89e253d69250548c5d814019fdd4f1ca.har.json")
+
 
 def setup_module(module):
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 
 class TestHar(object):
     def test_parse(self):
         from harpy.har import Har
         p = Har(f)
-        
+
     def test_missing_har(self):
         from harpy.har import Har
         with pytest.raises(IOError):
@@ -24,7 +27,7 @@ class TestHar(object):
         assert(name == "flying monkey")
         assert(version == "1.1.47")
         assert(comment == '')
-        
+
     def test_version(self):
         from harpy.har import Har
         h = Har(f)

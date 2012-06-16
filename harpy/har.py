@@ -4,20 +4,23 @@ import os.path
 from . import page
 from . import entry
 
+
 class Har(object):
     def __init__(self, f):
         if not os.path.isfile(f):
             raise IOError("%s does not exist." % f)
-            
+
         fp = open(f, 'r')
         self._raw = json.load(fp)
-        
+
         # the version entry is mandatory, but if it is empty is it assumed 1.1
         self.version = self._raw["log"]["version"]
         if not self.version:
             self.version = "1.1"
         elif self.version not in ["1.1", "1.2"]:
-            raise NotImplementedError("%s is now a supported har version. only 1.1. and 1.2 are supported" % self.version)
+            raise NotImplementedError("%s is now a supported har version. " +
+                                      "only 1.1. and 1.2 are supported"
+                                      % self.version)
 
         # mandatory
         self._creator = self._raw["log"]["creator"]
@@ -30,12 +33,12 @@ class Har(object):
             self._browser = {"name": "", "version": "", "comment": ""}
 
         self.pages = []
-        for p in self._raw["log"]["pages"]:         
-            self.pages.append(page.Page(p))    
+        for p in self._raw["log"]["pages"]:
+            self.pages.append(page.Page(p))
 
         self.entries = []
-        for e in self._raw["log"]["entries"]:         
-            self.entries.append(entry.Entry(e))    
+        for e in self._raw["log"]["entries"]:
+            self.entries.append(entry.Entry(e))
 
         if "comment" in self._raw:
             self.comment = self._raw["comment"]
@@ -53,7 +56,7 @@ class Har(object):
         else:
             _comment = ''
         return (_name, _version, _comment)
-            
+
     @property
     def browser(self):
         # mandatory
@@ -65,13 +68,12 @@ class Har(object):
         else:
             _comment = ''
         return (_name, _version, _comment)
-        
+
     def page_by_id(self, id):
         for p in self.pages:
             if p.id == id:
                 return p
         raise KeyError("page with id %s not found" % id)
-
 
     def entries_by_page_ref(self, page_ref):
         entries = []

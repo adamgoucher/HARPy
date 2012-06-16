@@ -3,6 +3,7 @@ from . import response
 from . import cache
 from . import timings
 
+
 class Entry(object):
     def __init__(self, j):
         self.raw = j
@@ -10,7 +11,7 @@ class Entry(object):
             self.page_ref = self.raw['pageref']
         else:
             self.page_ref = ''
-        
+
         self.started_date_time = self.raw["startedDateTime"]
         self.time = self.raw['time']
         self.request = request.Request(self.raw["request"])

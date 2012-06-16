@@ -1,7 +1,7 @@
 class Page(object):
     def __init__(self, j):
         self.raw = j
-        
+
         self.started_date_time = self.raw["startedDateTime"]
         self.id = self.raw['id']
         self.title = self.raw["title"]
@@ -11,7 +11,6 @@ class Page(object):
             self.comment = self.raw["comment"]
         else:
             self.comment = ''
-            
 
     @property
     def timings(self):
@@ -29,6 +28,5 @@ class Page(object):
             comment = self._timings["comment"]
         else:
             comment = ''
-            
+
         return (on_content_load, on_load, comment)
-        

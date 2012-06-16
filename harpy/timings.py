@@ -11,12 +11,12 @@ class Timings(object):
             self.dns = self.raw["dns"]
         else:
             self.dns = -1
-            
+
         if "connect" in self.raw:
             self.connect = self.raw["connect"]
         else:
             self.connect = -1
-            
+
         self.send = self.raw["send"]
         self.wait = self.raw["wait"]
         self.receive = self.raw["receive"]
