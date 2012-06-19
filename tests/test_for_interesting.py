@@ -24,7 +24,5 @@ class TestForInteresting(object):
         assert(len(unacceptable_duration) == 1)
         
     def test_acceptable_duration_page(self):
-        if self.parsed.pages[0].timings[1] < 10000:
-            print "BIOJ"
         acceptable_duration = [p for p in self.parsed.pages if p.timings[1] < 10000]
         assert(len(acceptable_duration) == 1)
