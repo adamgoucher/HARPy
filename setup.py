@@ -9,7 +9,7 @@ except ImportError:
 setup(
     name='HARPy',
     description='HARPy: a simple library for interrogating an HTTP Archive (HAR) file',
-    version='0.1.0',
+    version='0.2.0',
     url='https://github.com/adamgoucher/HARPy',
     license='LICENSE.txt',
     platforms=['unix', 'linux', 'osx', 'cygwin', 'win32'],
