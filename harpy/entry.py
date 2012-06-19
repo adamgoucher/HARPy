@@ -17,7 +17,10 @@ class Entry(object):
         self.request = request.Request(self.raw["request"])
         self.response = response.Response(self.raw["response"])
         self.cache = cache.Cache(self.raw["cache"])
-        self.timings = timings.Timings(self.raw["timings"])
+        if "timings" in self.raw:
+            self.timings = timings.Timings(self.raw["timings"])
+        else:
+            self.timings = timings.Timings({'send': None, 'wait': None, 'receive': None})
         if "serverIPAddress" in self.raw:
             self.server_ip_address = self.raw['serverIPAddress']
         else:
