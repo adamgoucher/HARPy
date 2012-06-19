@@ -7,11 +7,15 @@ from . import entry
 
 class Har(object):
     def __init__(self, f):
-        if not os.path.isfile(f):
-            raise IOError("%s does not exist." % f)
+        if not isinstance(f, dict):
+            if not os.path.isfile(f):
+                raise IOError("%s does not exist." % f)
 
-        fp = open(f, 'r')
-        self._raw = json.load(fp)
+            fp = open(f, 'r')
+            self._raw = json.load(fp)
+            fp.close()
+        else:
+            self._raw = f
 
         # the version entry is mandatory, but if it is empty is it assumed 1.1
         self.version = self._raw["log"]["version"]
